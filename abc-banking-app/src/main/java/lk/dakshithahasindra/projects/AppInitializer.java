@@ -15,7 +15,8 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Client/ClientMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.show();
