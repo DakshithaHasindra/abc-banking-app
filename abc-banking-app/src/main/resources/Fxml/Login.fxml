@@ -9,13 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/Login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.LoginController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="200.0" styleClass="login_logo_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="400.0" prefWidth="200.0" spacing="15.0" styleClass="login_logo_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <FontAwesomeIconView glyphName="BANDCAMP" size="30" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ABC Bank" />
+            <FontAwesomeIconView glyphName="BANDCAMP" size="60" />
+            <Text id="logo_text" strokeType="OUTSIDE" strokeWidth="0.0" text="ABC Bank" />
          </children>
       </VBox>
       <VBox layoutX="223.0" layoutY="78.0" prefHeight="350.0" prefWidth="350.0" styleClass="login_forum_container" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">

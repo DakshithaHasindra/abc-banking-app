@@ -4,19 +4,29 @@
 
 /* Logo Container Styles */
 .login_logo_container{
-    -fx-background-color: #132A13;
+    -fx-background-color: rgb(4, 17, 61);
     -fx-alignment: center;
 
 }
 
+/*#logo-text {*/
+/*    -fx-font-weight: 1000;*/
+/*    -fx-background-color: yellow;*/
+/*}*/
+
 .login_logo_container Text{
     -fx-font-size: 2em;
+
     -fx-fill: #FFFFFF;
 }
 
+/*.login_root_container {*/
+/*    -fx-background-color: grey;*/
+/*}*/
+
 
 .login_logo_container FontAwesomeIconView {
-    -fx-fill: #ECF39E;
+    -fx-fill: #eafa00;
 }
 
 /* Account selector choice box*/
@@ -45,7 +55,7 @@
 
 /* Login forum Styles */
 .login_forum_container {
-    -fx-spacing: 15;
+    -fx-spacing: 12;
     -fx-alignment: top_left;
     
 }
@@ -62,7 +72,7 @@
 }
 
 .login_forum_container Button {
-    -fx-background-color: #123A13;
+    -fx-background-color: #04113d;
     -fx-text-fill: #FFFFFF;
     -fx-pref-width: 350;
     -fx-pref-height: 30;
