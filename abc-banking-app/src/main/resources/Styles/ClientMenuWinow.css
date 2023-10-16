@@ -9,6 +9,16 @@
     -fx-effect: dropshadow(two-pass-box,#AAAAAA, 5,0,0,4);
 }
 
+.left_container Button:hover{
+    -fx-scale-y: 1.05;
+    -fx-scale-x: 1.05;
+}
+
+.left_container Button:pressed{
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
 /* Title / Log section */
 
 .title_container{

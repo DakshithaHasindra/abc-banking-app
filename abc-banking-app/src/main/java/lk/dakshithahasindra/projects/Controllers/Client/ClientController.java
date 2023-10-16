@@ -20,6 +20,8 @@ public class ClientController implements Initializable {
                 switch (ne){
                     case "Transaction":clientParapet.setCenter(Model.getInstance().getViewFactory().getTransactionView());
                         break;
+                    case "Accounts":clientParapet.setCenter(Model.getInstance().getViewFactory().getAccountsView());
+                        break;
                     default:clientParapet.setCenter(Model.getInstance().getViewFactory().getDashboardView());
                 }
             });
