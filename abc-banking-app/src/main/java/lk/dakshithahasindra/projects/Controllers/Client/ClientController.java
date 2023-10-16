@@ -15,19 +15,14 @@ public class ClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Platform.runLater(()->{
+
             Model.getInstance().getViewFactory().clientSelectedItemProperty().addListener((o,old,ne)->{
-                System.out.println(ne);
                 switch (ne){
                     case "Transaction":clientParapet.setCenter(Model.getInstance().getViewFactory().getTransactionView());
-                        System.out.println(clientParapet.toString());
-                        System.out.println("Transaction");
-//                        break;
-                    default:/*clientParapet.setCenter(Model.getInstance().getViewFactory().getDashboardView());*/
-                        System.out.println("Dashboard");
+                        break;
+                    default:clientParapet.setCenter(Model.getInstance().getViewFactory().getDashboardView());
                 }
             });
-        });
 
     }
 }

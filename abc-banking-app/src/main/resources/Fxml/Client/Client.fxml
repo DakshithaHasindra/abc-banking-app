@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="clientParapet" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane fx:id="clientParapet" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="lk.dakshithahasindra.projects.Controllers.Client.ClientController">
 
     <left>
         <fx:include source="ClientMenu.fxml" />

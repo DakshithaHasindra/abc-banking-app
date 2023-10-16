@@ -44,7 +44,7 @@ public class ViewFactory {
     public void showClientWindow (){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Client/Client.fxml"));
         ClientMenuController clientMenuController  =new ClientMenuController();
-        fxmlLoader.setController(clientMenuController);
+//        fxmlLoader.setController(clientMenuController);
         createStage(fxmlLoader);
     }
 

@@ -33,13 +33,13 @@ public class ClientMenuController implements Initializable {
     }
 
     private void onTransaction() {
-        System.out.println("Hi");
+//        System.out.println("Hi");
         Model.getInstance().getViewFactory().clientSelectedItemProperty().set("Transaction");
-        System.out.println(Model.getInstance().getViewFactory().getClientSelectedItem());
+//        System.out.println(Model.getInstance().getViewFactory().getClientSelectedItem());
     }
 
     private void onDashboard() {
-        System.out.println("Hi");
+//        System.out.println("Hi");
         Model.getInstance().getViewFactory().clientSelectedItemProperty().set("Dashboard");
     }
 
