@@ -10,5 +10,20 @@ import java.io.IOException;
 
 
 public class ViewFactory {
-    
+    private AnchorPane dashboardView;
+
+    public void ViewFactory() throws IOException {
+        try {
+            dashboardView = new FXMLLoader(getClass().getResource("/Fxml/Client/Dashboard.fxml")).load();
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
+    }
+    public AnchorPane getDashboardView(){
+        return (dashboardView==null)? (dashboardView= new ViewFactory().dashboardView):dashboardView;
+    }
+
+    public void showLoggingWindow(){
+
+    }
 }
