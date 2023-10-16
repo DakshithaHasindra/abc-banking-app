@@ -46,7 +46,7 @@ public class ViewFactory {
     private void createStage(FXMLLoader fxmlLoader) throws RuntimeException{
         Stage stage = new Stage();
         try {
-            stage.setScene(fxmlLoader.load());
+            stage.setScene(new Scene(fxmlLoader.load()));
             stage.setTitle("ABC Bank");
             stage.show();
         } catch (IOException e) {

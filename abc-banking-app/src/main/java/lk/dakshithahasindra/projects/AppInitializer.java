@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lk.dakshithahasindra.projects.Models.Model;
 import lk.dakshithahasindra.projects.Views.ViewFactory;
 
 import java.io.IOException;
@@ -18,8 +19,11 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        ViewFactory viewFactory = new ViewFactory();
+        ViewFactory viewFactory = Model.getInstance().getViewFactory();
         viewFactory.showLoggingWindow();
+
+//        ViewFactory viewFactory = new ViewFactory();
+//        viewFactory.showLoggingWindow();
 
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
