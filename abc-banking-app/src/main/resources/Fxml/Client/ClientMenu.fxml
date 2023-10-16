@@ -9,61 +9,55 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0"
-      prefWidth="200.0" styleClass="left_container" stylesheets="@../../Styles/ClientMenuWinow.css"
-      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Client.ClientMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="200.0" styleClass="left_container" stylesheets="@../../Styles/ClientMenuWinow.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Client.ClientMenuController">
    <AnchorPane prefHeight="720.0" prefWidth="160.0" styleClass="left_container">
       <children>
-         <VBox fx:id="btnProfile" prefHeight="400.0" prefWidth="160.0" styleClass="menu_container"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <VBox fx:id="btnProfile" prefHeight="400.0" prefWidth="160.0" styleClass="menu_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
             <children>
                <Button fx:id="btnDashboard" mnemonicParsing="false" prefWidth="139.0" text="Dashboard">
                   <graphic>
-                     <FontAwesomeIconView glyphName="HOME" size="20"/>
+                     <FontAwesomeIconView glyphName="HOME" size="20" />
                   </graphic>
                   <VBox.margin>
-                     <Insets/>
+                     <Insets />
                   </VBox.margin>
                </Button>
                <Button fx:id="tbnTransaction" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Transaction">
                   <graphic>
-                     <FontAwesomeIconView glyphName="EXCHANGE" size="15" text=""/>
+                     <FontAwesomeIconView glyphName="EXCHANGE" size="15" text="" />
                   </graphic>
                </Button>
                <Button fx:id="btnAccounts" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" text="Accounts">
                   <graphic>
-                     <FontAwesomeIconView glyphName="ADDRESS_BOOK_ALT" size="20" text=""/>
+                     <FontAwesomeIconView glyphName="ADDRESS_BOOK_ALT" size="20" text="" />
                   </graphic>
                </Button>
-               <Line endX="120.0"/>
+               <Line endX="120.0" />
                <Button layoutX="10.0" layoutY="58.0" mnemonicParsing="false" styleClass="alt_menu_btn" text="Profile">
                   <graphic>
-                     <FontAwesomeIconView glyphName="USER" size="20"/>
+                     <FontAwesomeIconView glyphName="USER" size="20" />
                   </graphic>
                </Button>
-               <Button fx:id="btnLogout" layoutX="10.0" layoutY="83.0" mnemonicParsing="false" styleClass="alt_menu_btn"
-                       text="Logout">
+               <Button fx:id="btnLogout" layoutX="10.0" layoutY="83.0" mnemonicParsing="false" styleClass="alt_menu_btn" text="Logout">
                   <graphic>
-                     <FontAwesomeIconView glyphName="POWER_OFF" size="20"/>
+                     <FontAwesomeIconView glyphName="POWER_OFF" size="20" />
                   </graphic>
                </Button>
             </children>
          </VBox>
-         <VBox prefHeight="80.0" prefWidth="160.0" styleClass="title_container" AnchorPane.leftAnchor="0.0"
-               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <VBox prefHeight="80.0" prefWidth="160.0" styleClass="title_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-               <FontAwesomeIconView glyphName="BANK" size="30"/>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ABC Bank"/>
+               <FontAwesomeIconView glyphName="BANK" size="30" />
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ABC Bank" />
             </children>
          </VBox>
-         <VBox prefHeight="120.0" prefWidth="130.0" styleClass="report_container" AnchorPane.bottomAnchor="0.0"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <VBox prefHeight="120.0" prefWidth="130.0" styleClass="report_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report Bug or suggestions"/>
-               <Label text="Use this to report any errors "/>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report Bug or suggestions" />
+               <Label text="Use this to report any errors " />
                <Button fx:id="btnReportBug" mnemonicParsing="false" text="Report">
                   <graphic>
-                     <FontAwesomeIconView glyphName="BUG"/>
+                     <FontAwesomeIconView glyphName="BUG" />
                   </graphic>
                </Button>
             </children>
