@@ -17,7 +17,7 @@ public class AppInitializer extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage)  {
 
         ViewFactory viewFactory = Model.getInstance().getViewFactory();
         viewFactory.showLoggingWindow();
