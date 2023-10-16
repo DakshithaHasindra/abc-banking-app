@@ -4,6 +4,7 @@ module ABC.Bank {
     requires  de.jensd.fx.glyphs.fontawesome;
     requires java.sql;
     requires mysql.connector.j;
+    requires lombok;
 
     opens lk.dakshithahasindra.projects to javafx.fxml;
     exports lk.dakshithahasindra.projects;
