@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class ViewFactory {
     private AnchorPane dashboardView;
+    private AnchorPane transactionView;
 
     public void ViewFactory() {
 
@@ -57,5 +58,16 @@ public class ViewFactory {
 
     public void closeStage(Stage stage) {
         stage.close();
+    }
+
+    public AnchorPane getTransactionView() {
+        if(transactionView==null){
+            try {
+                transactionView = new FXMLLoader(getClass().getResource("/Fxml/Client/Transaction.fxml")).load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return transactionView;
     }
 }
