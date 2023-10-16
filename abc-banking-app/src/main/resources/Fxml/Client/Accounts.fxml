@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="rootClientProfile" prefHeight="750.0" prefWidth="850.0" styleClass="accountView_container" stylesheets="@../../Styles/Client/Accounts.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Client.AccountsController">
+   <children>
+      <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checking Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <VBox layoutX="14.0" layoutY="55.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number :" />
+            <Label fx:id="lblCAAccountNumber" text="1234 5678 9123 4567" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Limit" />
+            <Label fx:id="lblCATransactionLimit" text="Rs. 100000.00" />
+            <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created :" />
+            <Label fx:id="lblCACreatedDate" text="10-10-2023" />
+            <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance :" />
+            <Label fx:id="lblCABalance" layoutX="10.0" layoutY="90.0" text="Rs. 500000.00" />
+         </children>
+      </VBox>
+      <Text layoutX="14.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="364.0" />
+      <VBox layoutX="14.0" layoutY="401.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="404.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number :" />
+            <Label fx:id="lblSANumber" text="1234 5678 9123 4567" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Withdrawal Limit" />
+            <Label fx:id="lblSAWithdrawalLimit" text="Rs. 100000.00" />
+            <Text layoutX="10.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Created :" />
+            <Label fx:id="lblSACreatedDate" text="10-10-2023">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </Label>
+            <Text layoutX="10.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance :" />
+            <Label fx:id="lblSABalance" layoutX="10.0" layoutY="90.0" text="Rs. 500000.00" />
+         </children>
+      </VBox>
+      <Text layoutX="501.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Saving Account" AnchorPane.rightAnchor="64.802734375" />
+      <TextField fx:id="txtTransferAmountToSA" layoutX="614.0" layoutY="81.0" prefHeight="33.0" prefWidth="284.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="81.0" />
+      <Button fx:id="btnTransferToSA" layoutX="500.0" layoutY="126.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="126.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_DOWN" size="20" text="" />
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Text layoutX="500.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Checking Account" AnchorPane.rightAnchor="43.29266357421875" AnchorPane.topAnchor="404.1063461303711" />
+      <Button fx:id="btnTransferToCA" layoutX="500.0" layoutY="491.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="491.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="ARROW_DOWN" size="20" text="" />
+         </graphic>
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtTransferAmountToCA" layoutX="500.0" layoutY="445.0" prefHeight="33.0" prefWidth="284.0" AnchorPane.rightAnchor="66.0" />
+   </children>
+</AnchorPane>
