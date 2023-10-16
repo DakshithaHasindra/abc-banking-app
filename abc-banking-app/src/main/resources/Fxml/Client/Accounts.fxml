@@ -44,7 +44,7 @@
       </VBox>
       <Text layoutX="501.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Saving Account" AnchorPane.rightAnchor="64.802734375" />
       <TextField fx:id="txtTransferAmountToSA" layoutX="614.0" layoutY="81.0" prefHeight="33.0" prefWidth="284.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="81.0" />
-      <Button fx:id="btnTransferToSA" layoutX="500.0" layoutY="126.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="126.0">
+      <Button fx:id="btnTransferToSA" layoutX="500.0" layoutY="126.0" mnemonicParsing="false" onAction="#btnTransferToSAOnAction" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="126.0">
          <graphic>
             <FontAwesomeIconView glyphName="ARROW_DOWN" size="20" text="" />
          </graphic>
@@ -53,7 +53,7 @@
          </font>
       </Button>
       <Text layoutX="500.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Checking Account" AnchorPane.rightAnchor="43.29266357421875" AnchorPane.topAnchor="404.1063461303711" />
-      <Button fx:id="btnTransferToCA" layoutX="500.0" layoutY="491.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="491.0">
+      <Button fx:id="btnTransferToCA" layoutX="500.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnTransferToCAOnAction" prefHeight="33.0" prefWidth="284.0" text="Move Funds" textFill="WHITE" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="491.0">
          <graphic>
             <FontAwesomeIconView glyphName="ARROW_DOWN" size="20" text="" />
          </graphic>

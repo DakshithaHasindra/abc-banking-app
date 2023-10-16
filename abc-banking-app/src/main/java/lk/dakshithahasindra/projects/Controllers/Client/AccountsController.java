@@ -1,5 +1,6 @@
 package lk.dakshithahasindra.projects.Controllers.Client;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,4 +20,11 @@ public class AccountsController {
     public Button btnTransferToSA;
     public Button btnTransferToCA;
     public TextField txtTransferAmountToCA;
+
+    public void btnTransferToSAOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnTransferToCAOnAction(ActionEvent actionEvent) {
+
+    }
 }

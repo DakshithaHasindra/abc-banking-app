@@ -30,6 +30,11 @@ public class ClientMenuController implements Initializable {
     private void addListeners(){
         btnDashboard.setOnAction(actionEvent -> onDashboard());
         tbnTransaction.setOnAction(actionEvent -> onTransaction());
+        btnAccounts.setOnAction(actionEvent -> onAccounts());
+    }
+
+    private void onAccounts() {
+        Model.getInstance().getViewFactory().clientSelectedItemProperty().set("Accounts");
     }
 
     private void onTransaction() {
