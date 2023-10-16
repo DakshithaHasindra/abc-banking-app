@@ -1,5 +1,7 @@
 package lk.dakshithahasindra.projects.Views;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -16,8 +18,10 @@ public class ViewFactory {
     private AnchorPane dashboardView;
     private AnchorPane transactionView;
 
-    public void ViewFactory() {
+    private final StringProperty clientSelectedItem;
 
+    public  ViewFactory() {
+        this.clientSelectedItem = new SimpleStringProperty("Dashboard");
 
     }
     public AnchorPane getDashboardView(){
@@ -69,5 +73,13 @@ public class ViewFactory {
             }
         }
         return transactionView;
+    }
+
+    public String getClientSelectedItem() {
+        return clientSelectedItem.get();
+    }
+
+    public StringProperty clientSelectedItemProperty() {
+        return clientSelectedItem;
     }
 }
