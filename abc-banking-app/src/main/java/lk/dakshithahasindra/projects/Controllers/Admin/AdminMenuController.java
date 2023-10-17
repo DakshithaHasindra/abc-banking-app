@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import lk.dakshithahasindra.projects.Models.Model;
+import lk.dakshithahasindra.projects.Views.AdminMenuOptions;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,19 +17,19 @@ public class AdminMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Create New Client");
+        Model.getInstance().getViewFactory().getADMIN_SELECTED_MENU_OPTION().set(AdminMenuOptions.CREATE_NEW_CLIENT);
     }
 
     public void btnCreateClientOnAction(ActionEvent actionEvent) {
-        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Create New Client");
+        Model.getInstance().getViewFactory().getADMIN_SELECTED_MENU_OPTION().set(AdminMenuOptions.CREATE_NEW_CLIENT);
     }
 
     public void btnClientsOnAction(ActionEvent actionEvent) {
-        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Clients");
+        Model.getInstance().getViewFactory().getADMIN_SELECTED_MENU_OPTION().set(AdminMenuOptions.CLIENTS);
     }
 
     public void btnDepositeOnAction(ActionEvent actionEvent) {
-        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Deposite");
+        Model.getInstance().getViewFactory().getADMIN_SELECTED_MENU_OPTION().set(AdminMenuOptions.DEPOSIT);
     }
 
     public void btnLogOutOnAction(ActionEvent actionEvent) {
