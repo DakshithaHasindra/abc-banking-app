@@ -12,9 +12,9 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().addListener((o,prev,cur)->{
+        Model.getInstance().getViewFactory().getADMIN_SELECTED_MENU_OPTION().addListener((o,prev,cur)->{
             switch (cur){
-                case "Create New Client": adminRoot.setCenter(Model.getInstance().getViewFactory().getCreatClientView());
+                case CREATE_NEW_CLIENT: adminRoot.setCenter(Model.getInstance().getViewFactory().getCreatClientView());
                 break;
 //                default:adminRoot.setCenter(Model.getInstance().getViewFactory().getCreatClientView());
             }

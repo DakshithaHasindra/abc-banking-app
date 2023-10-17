@@ -1,11 +1,15 @@
 package lk.dakshithahasindra.projects.Views;
 
+import javafx.beans.Observable;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.dakshithahasindra.projects.Controllers.Admin.AdminMenuController;
 import lk.dakshithahasindra.projects.Controllers.Client.ClientMenuController;
 
 import java.io.IOException;
@@ -15,16 +19,20 @@ public class ViewFactory {
     private AnchorPane dashboardView;
     private AnchorPane transactionView;
     private AnchorPane accountsView;
-    private final StringProperty CLIENT_SELECTED_ITEM;
+//    private final StringProperty CLIENT_SELECTED_ITEM;
+
+    private final ObjectProperty<ClientMenuOptions> CLIENT_SELECTED_MENU_OPTION;
 
 
     /* Admin variables - views */
     private AnchorPane creatClientView;
-    private final StringProperty ADMIN_SELECTED_ITEM;
+//    private final StringProperty ADMIN_SELECTED_ITEM;
+    private final ObjectProperty<AdminMenuOptions> ADMIN_SELECTED_MENU_OPTION;
 
     public  ViewFactory() {
-        this.CLIENT_SELECTED_ITEM = new SimpleStringProperty("Dashboard");
-        this.ADMIN_SELECTED_ITEM = new SimpleStringProperty("Create New Client");
+        this.CLIENT_SELECTED_MENU_OPTION = new SimpleObjectProperty<>();
+//        this.CLIENT_SELECTED_ITEM = new SimpleStringProperty("Dashboard");
+        this.ADMIN_SELECTED_MENU_OPTION = new SimpleObjectProperty<>();
 
     }
 
@@ -33,15 +41,16 @@ public class ViewFactory {
 //    public String getCLIENT_SELECTED_ITEM() {
 //        return CLIENT_SELECTED_ITEM.get();
 //    }
-    public StringProperty CLIENT_SELECTED_ITEMProperty() {
-        return CLIENT_SELECTED_ITEM;
+    public ObjectProperty<ClientMenuOptions> getCLIENT_SELECTED_MENU_OPTION() {
+        return CLIENT_SELECTED_MENU_OPTION;
     }
-    public StringProperty ADMIN_SELECTED_ITEMProperty() {
-        return ADMIN_SELECTED_ITEM;
+    public ObjectProperty<AdminMenuOptions> getADMIN_SELECTED_MENU_OPTION() {
+        return ADMIN_SELECTED_MENU_OPTION;
     }
 
 
     public AnchorPane getDashboardView(){
+
         if(dashboardView==null){
             try {
                 dashboardView = new FXMLLoader(getClass().getResource("/Fxml/Client/Dashboard.fxml")).load();

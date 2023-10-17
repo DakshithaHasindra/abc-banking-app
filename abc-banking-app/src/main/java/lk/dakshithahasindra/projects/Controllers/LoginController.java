@@ -7,13 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.dakshithahasindra.projects.Models.Model;
+import lk.dakshithahasindra.projects.Views.AccountType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController  implements Initializable {
 
-    public ChoiceBox acc_selector;
+    public ChoiceBox<AccountType> acc_selector;
     public Label lblPayeeAdress;
     public TextField txtUsername;
     public TextField txtPassword;
@@ -22,14 +23,19 @@ public class LoginController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        acc_selector.getItems().setAll(AccountType.CLIENT,AccountType.ADMIN);
+        acc_selector.getSelectionModel().select(AccountType.CLIENT);
         lblError.setText(null);
-//        lblError.setVisible(false);
         btnLogin.setOnAction(actionEvent -> onLogin());
     }
 
     private void onLogin() {
-        Model.getInstance().getViewFactory().showAdminWindow();
-//        Model.getInstance().getViewFactory().showClientWindow();
+
+        if(acc_selector.getSelectionModel().getSelectedItem()==AccountType.ADMIN){
+            Model.getInstance().getViewFactory().showAdminWindow();
+        }else {
+            Model.getInstance().getViewFactory().showClientWindow();
+        }
         Stage loginStage =(Stage) lblError.getScene().getWindow();
         Model.getInstance().getViewFactory().closeStage(loginStage);
     }

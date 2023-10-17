@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import lk.dakshithahasindra.projects.Models.Model;
+import lk.dakshithahasindra.projects.Views.ClientMenuOptions;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,18 +35,18 @@ public class ClientMenuController implements Initializable {
     }
 
     private void onAccounts() {
-        Model.getInstance().getViewFactory().CLIENT_SELECTED_ITEMProperty().set("Accounts");
+        Model.getInstance().getViewFactory().getCLIENT_SELECTED_MENU_OPTION().set(ClientMenuOptions.ACCOUNT);
     }
 
     private void onTransaction() {
 //        System.out.println("Hi");
-        Model.getInstance().getViewFactory().CLIENT_SELECTED_ITEMProperty().set("Transaction");
+        Model.getInstance().getViewFactory().getCLIENT_SELECTED_MENU_OPTION().set(ClientMenuOptions.TRANSACTION);
 //        System.out.println(Model.getInstance().getViewFactory().getClientSelectedItem());
     }
 
     private void onDashboard() {
 //        System.out.println("Hi");
-        Model.getInstance().getViewFactory().CLIENT_SELECTED_ITEMProperty().set("Dashboard");
+        Model.getInstance().getViewFactory().getCLIENT_SELECTED_MENU_OPTION().set(ClientMenuOptions.DASHBOARD);
     }
 
 
