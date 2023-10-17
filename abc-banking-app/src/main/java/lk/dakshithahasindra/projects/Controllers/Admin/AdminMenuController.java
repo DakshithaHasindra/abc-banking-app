@@ -20,16 +20,19 @@ public class AdminMenuController implements Initializable {
     }
 
     public void btnCreateClientOnAction(ActionEvent actionEvent) {
-
+        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Create New Client");
     }
 
     public void btnClientsOnAction(ActionEvent actionEvent) {
+        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Clients");
     }
 
     public void btnDepositeOnAction(ActionEvent actionEvent) {
+        Model.getInstance().getViewFactory().ADMIN_SELECTED_ITEMProperty().set("Deposite");
     }
 
     public void btnLogOutOnAction(ActionEvent actionEvent) {
+
 
     }
 }

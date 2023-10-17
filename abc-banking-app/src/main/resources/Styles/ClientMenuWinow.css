@@ -10,6 +10,10 @@
 
 }
 
+.left_container_admin_VBox {
+    -fx-spacing: 15;
+}
+
 .left_container {
     -fx-background-color: #EEEEEE;
     /*-fx-background-radius: 10;*/
