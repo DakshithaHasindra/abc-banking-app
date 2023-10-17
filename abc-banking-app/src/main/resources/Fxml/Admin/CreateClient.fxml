@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="rootAdminCreateClient" prefHeight="750.0" prefWidth="850.0" styleClass="create_client_container" stylesheets="@../../Styles/Admin/CreateNewClient.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Admin.CreateClientController">
+   <children>
+      <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title_text" text="Create New Client Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <VBox fillWidth="false" layoutX="14.0" layoutY="49.0" prefHeight="700.0" prefWidth="600.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="49.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name :" />
+            <TextField fx:id="txtFirstName" prefHeight="24.0" prefWidth="282.0" />
+            <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name :" />
+            <TextField fx:id="txtLastName" layoutX="10.0" layoutY="26.0" prefHeight="24.0" prefWidth="282.0" />
+            <Text layoutX="10.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
+            <TextField fx:id="txtPassword" layoutX="10.0" layoutY="66.0" prefHeight="24.0" prefWidth="282.0" />
+            <Line endX="146.2928924560547" endY="-0.41421353816986084" layoutX="122.0" layoutY="301.0" startX="-100.0" />
+            <Text layoutX="10.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts :" />
+            <Line endX="146.2928924560547" endY="-0.41421353816986084" layoutX="122.0" layoutY="462.0" startX="-100.0" />
+            <CheckBox fx:id="cbCheckingAccount" mnemonicParsing="false" text="Checking Account" />
+            <Label fx:id="lblCheckingAccNumber" styleClass="account_number_lbl" text="Label" />
+            <Text layoutX="10.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checking Account Deposite :" />
+            <TextField fx:id="txtCheckingDeposite" layoutX="10.0" layoutY="106.0" prefHeight="24.0" prefWidth="282.0" />
+            <Line endX="146.2928924560547" endY="-0.41421353816986084" startX="-100.0" />
+            <CheckBox fx:id="cbSavingsAccount" layoutX="10.0" layoutY="146.0" mnemonicParsing="false" text="Savings Account" />
+            <Label fx:id="lblSavingsAccNumber" layoutX="21.0" layoutY="339.0" styleClass="account_number_lbl" text="Label" />
+            <Text layoutX="10.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account Deposite :" />
+            <TextField fx:id="txtSavingsAccDeposite" layoutX="10.0" layoutY="180.0" prefHeight="24.0" prefWidth="282.0" />
+            <HBox prefHeight="38.0" prefWidth="565.0">
+               <children>
+                  <Button fx:id="btnCreateNewClient" mnemonicParsing="false" onAction="#btnCreateNewClientOnAction" text="Create New Client" />
+                  <Label fx:id="lblError" styleClass="error_lbl" text="Error" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
