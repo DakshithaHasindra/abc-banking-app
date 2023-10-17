@@ -1,8 +1,6 @@
 package lk.dakshithahasindra.projects.Controllers.Client;
 
-import javafx.application.Platform;
 import javafx.fxml.Initializable;
-import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.layout.BorderPane;
 import lk.dakshithahasindra.projects.Models.Model;
 
@@ -16,7 +14,7 @@ public class ClientController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-            Model.getInstance().getViewFactory().clientSelectedItemProperty().addListener((o,old,ne)->{
+            Model.getInstance().getViewFactory().CLIENT_SELECTED_ITEMProperty().addListener((o, old, ne)->{
                 switch (ne){
                     case "Transaction":clientParapet.setCenter(Model.getInstance().getViewFactory().getTransactionView());
                         break;

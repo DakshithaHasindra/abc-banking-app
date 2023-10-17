@@ -7,9 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.dakshithahasindra.projects.Controllers.Client.ClientMenuController;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 
@@ -17,15 +14,33 @@ import java.io.IOException;
 public class ViewFactory {
     private AnchorPane dashboardView;
     private AnchorPane transactionView;
-
     private AnchorPane accountsView;
+    private final StringProperty CLIENT_SELECTED_ITEM;
 
-    private final StringProperty clientSelectedItem;
+
+    /* Admin variables - views */
+    private AnchorPane creatClientView;
+    private final StringProperty ADMIN_SELECTED_ITEM;
 
     public  ViewFactory() {
-        this.clientSelectedItem = new SimpleStringProperty("Dashboard");
+        this.CLIENT_SELECTED_ITEM = new SimpleStringProperty("Dashboard");
+        this.ADMIN_SELECTED_ITEM = new SimpleStringProperty("Create New Client");
 
     }
+
+    /* String property returns */
+
+//    public String getCLIENT_SELECTED_ITEM() {
+//        return CLIENT_SELECTED_ITEM.get();
+//    }
+    public StringProperty CLIENT_SELECTED_ITEMProperty() {
+        return CLIENT_SELECTED_ITEM;
+    }
+    public StringProperty ADMIN_SELECTED_ITEMProperty() {
+        return ADMIN_SELECTED_ITEM;
+    }
+
+
     public AnchorPane getDashboardView(){
         if(dashboardView==null){
             try {
@@ -37,16 +52,21 @@ public class ViewFactory {
         return dashboardView;
     }
 
+
     public void showLoggingWindow(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
         createStage(fxmlLoader);
     }
-
-
     public void showClientWindow (){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Client/Client.fxml"));
         ClientMenuController clientMenuController  =new ClientMenuController();
 //        fxmlLoader.setController(clientMenuController);
+        createStage(fxmlLoader);
+    }
+
+
+    public void showAdminWindow(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
         createStage(fxmlLoader);
     }
 
@@ -77,13 +97,7 @@ public class ViewFactory {
         return transactionView;
     }
 
-    public String getClientSelectedItem() {
-        return clientSelectedItem.get();
-    }
 
-    public StringProperty clientSelectedItemProperty() {
-        return clientSelectedItem;
-    }
 
     public AnchorPane getAccountsView() {
         if(accountsView==null){
@@ -95,4 +109,21 @@ public class ViewFactory {
         }
         return accountsView;
     }
+
+
+    /* Admin views Section */
+    public AnchorPane getCreatClientView() {
+        if(creatClientView==null){
+            try {
+                creatClientView = new FXMLLoader(getClass().getResource("/Fxml/Admin/CreateClient.fxml")).load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return creatClientView;
+    }
+
+
+
+
 }

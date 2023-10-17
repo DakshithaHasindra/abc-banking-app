@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="180.0" stylesheets="@../../Styles/ClientMenuWinow.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Admin.AdminMenuController">
    <children>
       <AnchorPane prefHeight="730.0" prefWidth="160.0" styleClass="left_container">
@@ -19,26 +18,26 @@
             </VBox>
             <VBox layoutY="221.0" prefHeight="400.0" prefWidth="100.0" styleClass="menu_container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                <children>
-                  <Button fx:id="btnCreateClient" mnemonicParsing="false" text="Create Client">
-                     <onAction>#btnCreateClientonAction</onAction>
+                  <Button fx:id="btnCreateClient" mnemonicParsing="false" onAction="#btnCreateClientOnAction" text="Create Client">
+<!--                     <onAction>#btnCreateClientonAction</onAction>-->
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="15" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnClients" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Clients">
-                     <onAction>#btnClientsOnAction</onAction>
+                  <Button fx:id="btnClients" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnClientsOnAction" text="Clients">
+<!--                     <onAction>#btnClientsOnAction</onAction>-->
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST" size="20" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnDeposite" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" text="Deposit">
-                     <onAction>#btnDepositeOnAction</onAction>
+                  <Button fx:id="btnDeposite" layoutX="10.0" layoutY="34.0" mnemonicParsing="false" onAction="#btnDepositeOnAction" text="Deposit">
+<!--                     <onAction>#btnDepositeOnAction</onAction>-->
                      <graphic>
                         <FontAwesomeIconView glyphName="MONEY" size="20" />
                      </graphic>
                   </Button>
-                  <Button fx:id="btnLogOut" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" styleClass="alt_menu_btn" text="Logout">
-                     <onAction>#btnLogOutOnAction</onAction>
+                  <Button fx:id="btnLogOut" layoutX="10.0" layoutY="58.0" mnemonicParsing="false" onAction="#btnLogOutOnAction" styleClass="alt_menu_btn" text="Logout">
+<!--                     <onAction>#btnLogOutOnAction</onAction>-->
                      <graphic>
                         <FontAwesomeIconView glyphName="POWER_OFF" size="20" />
                      </graphic>
