@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="rootAdminDeposits" prefHeight="750.0" prefWidth="850.0" styleClass="deposit_container" stylesheets="@../../Styles/Admin/Deposit.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Admin.DepositeController">
+   <children>
+      <VBox layoutX="15.0" layoutY="90.0" prefHeight="570.0" prefWidth="820.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="820.0" styleClass="search_box">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Account Number : " />
+                  <TextField fx:id="txtSearch" prefHeight="10.0" prefWidth="254.0" />
+                  <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="7.0" text="Search">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <ListView fx:id="lvSearchedList" prefHeight="200.0" prefWidth="820.0" styleClass="result_box" />
+            <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="315.0" prefWidth="100.0" styleClass="deposit_box">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title_text" text="Deposit Section" />
+                  <Text layoutX="365.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" />
+                  <TextField fx:id="txtAmount" prefHeight="30.0" prefWidth="300.0" />
+                  <Button fx:id="btnDeposit" mnemonicParsing="false" onAction="#btnDepositOnAction" text="Deposite">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Text layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title_text" text="DEPOSITS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
+   </children>
+</AnchorPane>
