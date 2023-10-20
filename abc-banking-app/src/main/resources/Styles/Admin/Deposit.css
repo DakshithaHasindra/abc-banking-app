@@ -25,7 +25,7 @@
 }
 
  Button {
-    -fx-background-color: linear-gradient(#04113D,#047dc2);
+    -fx-background-color: linear-gradient(to right,#04113D,#047dc2);
     -fx-text-fill: white;
      -fx-fill: #EEEEEE;
     -fx-effect: dropshadow(three-pass-box, #AAAAAA, 3, 0, 0, 3);
