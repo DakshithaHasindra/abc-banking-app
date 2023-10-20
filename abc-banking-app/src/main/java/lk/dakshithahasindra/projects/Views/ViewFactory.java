@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.dakshithahasindra.projects.Controllers.Admin.AdminMenuController;
@@ -88,6 +89,8 @@ public class ViewFactory {
         try {
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.setTitle("ABC Bank");
+            stage.setResizable(false);
+            stage.getIcons().add(new Image(String.valueOf(ViewFactory.class.getResource("/Images/bandcamp-abc-bank-icon.png"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
