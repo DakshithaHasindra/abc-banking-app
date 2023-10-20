@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane fx:id="rootClientTransView" prefHeight="60.0" prefWidth="550.0" styleClass="cell_container" stylesheets="@../../Styles/Client/TransactionCell.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.dakshithahasindra.projects.Controllers.Client.TransactionCellController">
+   <children>
+      <VBox alignment="CENTER" layoutX="14.0" layoutY="5.0" prefHeight="50.0" prefWidth="50.0" styleClass="trans_icon_container" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <FontAwesomeIconView fx:id="iconIn" glyphName="LONG_ARROW_RIGHT" size="17" />
+            <FontAwesomeIconView fx:id="iconOut" glyphName="LONG_ARROW_LEFT" size="17" />
+         </children>
+      </VBox>
+      <Label fx:id="lblTransDate" layoutX="81.0" layoutY="22.0" styleClass="trans_date_lbl" text="2023-12-12" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="22.0" />
+      <Label fx:id="lblOtherParty" layoutX="229.0" layoutY="22.0" styleClass="tran_otherParty_lbl" text="D.H.Ranawaka" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="22.0" />
+      <Line endY="20.0" layoutX="396.0" layoutY="20.0" />
+      <Label fx:id="lblAmount" layoutX="440.0" layoutY="19.0" styleClass="trans_amount_lbl" text="Rs. 100000.00" AnchorPane.rightAnchor="14.0" />
+   </children>
+</AnchorPane>
