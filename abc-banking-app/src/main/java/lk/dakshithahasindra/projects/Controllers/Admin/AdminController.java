@@ -1,6 +1,7 @@
 package lk.dakshithahasindra.projects.Controllers.Admin;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import lk.dakshithahasindra.projects.Models.Model;
 
@@ -17,6 +18,10 @@ public class AdminController implements Initializable {
                 case CREATE_NEW_CLIENT: adminRoot.setCenter(Model.getInstance().getViewFactory().getCreatClientView());
                 break;
                 case CLIENTS:adminRoot.setCenter(Model.getInstance().getViewFactory().getClientsView());
+                    break;
+                case DEPOSIT:adminRoot.setCenter(Model.getInstance().getViewFactory().getDepositView());
+                break;
+                default:new Alert(Alert.AlertType.ERROR,"Failed to load UI❌");
 //                default:adminRoot.setCenter(Model.getInstance().getViewFactory().getCreatClientView());
             }
         });

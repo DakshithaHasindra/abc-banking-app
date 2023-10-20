@@ -30,6 +30,7 @@ public class ViewFactory {
 //    private final StringProperty ADMIN_SELECTED_ITEM;
     private final ObjectProperty<AdminMenuOptions> ADMIN_SELECTED_MENU_OPTION;
     private AnchorPane clientView;
+    private AnchorPane depositView;
 
 
     public  ViewFactory() {
@@ -145,5 +146,15 @@ public class ViewFactory {
             }
         }
         return clientView;
+    }
+
+    public AnchorPane getDepositView() {
+        try {
+            depositView = new FXMLLoader(getClass().getResource("/Fxml/Admin/Deposite.fxml")).load();
+            System.out.println("deposit view Loaded");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return depositView;
     }
 }
