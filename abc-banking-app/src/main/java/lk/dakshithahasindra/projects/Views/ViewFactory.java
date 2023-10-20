@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -28,6 +29,8 @@ public class ViewFactory {
     private AnchorPane creatClientView;
 //    private final StringProperty ADMIN_SELECTED_ITEM;
     private final ObjectProperty<AdminMenuOptions> ADMIN_SELECTED_MENU_OPTION;
+    private AnchorPane clientView;
+
 
     public  ViewFactory() {
         this.CLIENT_SELECTED_MENU_OPTION = new SimpleObjectProperty<>();
@@ -133,6 +136,14 @@ public class ViewFactory {
     }
 
 
-
-
+    public AnchorPane getClientsView() {
+        if(clientView==null){
+            try {
+                clientView=new FXMLLoader(getClass().getResource("/Fxml/Admin/Clients.fxml")).load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return clientView;
+    }
 }
