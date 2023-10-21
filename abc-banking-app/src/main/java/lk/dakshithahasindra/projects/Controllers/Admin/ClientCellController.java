@@ -1,5 +1,6 @@
 package lk.dakshithahasindra.projects.Controllers.Admin;
 
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,12 +22,20 @@ public class ClientCellController implements Initializable {
 
     public ClientCellController(Client client) {
         this.client = client;
+        Platform.runLater(()-> {
+            lblFirstName.setText(client.firstNameProperty().get());
+            lblLastName.setText(client.lastNameProperty().get());
+            lblCheckingAcNo.setText(client.checkingAccountProperty().get().accountNumberProperty().get());
+            lblSavingsAccNo.setText(client.savingsAccountProperty().get().accountNumberProperty().get());
+        });
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnDelete.setOnAction(actionEvent -> {
+            System.out.println("Deleted");
+        });
     }
 
 
