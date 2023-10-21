@@ -42,8 +42,8 @@ public class CreateClientController implements Initializable {
         CheckingAccount ca = new CheckingAccount("Dakshitha hasindra","1234567891234567",10000,100000);
         Client cl1 = new Client("Dakshitha","Hasindra",ca,sa, LocalDate.now());
         ObservableList<Node> children = Model.getInstance().getViewFactory().getClientsView().getChildren();
-        
-        System.out.println(Model.getInstance().getViewFactory().getClientsView().getChildren());
+
+//        System.out.println(Model.getInstance().getViewFactory().getClientsView().getChildren());
 
 
         FXMLLoader clientsFxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Admin/ClientCell.fxml"));
