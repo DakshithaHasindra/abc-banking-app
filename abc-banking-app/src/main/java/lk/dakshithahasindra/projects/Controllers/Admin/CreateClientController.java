@@ -1,8 +1,10 @@
 package lk.dakshithahasindra.projects.Controllers.Admin;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -11,6 +13,7 @@ import lk.dakshithahasindra.projects.Models.CheckingAccount;
 import lk.dakshithahasindra.projects.Models.Client;
 import lk.dakshithahasindra.projects.Models.Model;
 import lk.dakshithahasindra.projects.Models.SavingsAccount;
+import lk.dakshithahasindra.projects.Views.ClientCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +35,17 @@ public class CreateClientController implements Initializable {
     public Label lblError;
 
     public void btnCreateNewClientOnAction(ActionEvent actionEvent) throws InterruptedException {
+
+
+
         SavingsAccount sa = new SavingsAccount("Dakshitha hasindra","1234567891234567",10000,100000);
         CheckingAccount ca = new CheckingAccount("Dakshitha hasindra","1234567891234567",10000,100000);
         Client cl1 = new Client("Dakshitha","Hasindra",ca,sa, LocalDate.now());
+        ObservableList<Node> children = Model.getInstance().getViewFactory().getClientsView().getChildren();
+        
+        System.out.println(Model.getInstance().getViewFactory().getClientsView().getChildren());
+
+
         FXMLLoader clientsFxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Admin/ClientCell.fxml"));
         ClientCellController clientCellController1 =new ClientCellController(cl1);
 //        Thread.sleep(100);
