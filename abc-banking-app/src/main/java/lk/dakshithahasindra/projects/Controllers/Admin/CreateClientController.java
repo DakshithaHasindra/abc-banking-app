@@ -9,14 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.dakshithahasindra.projects.Models.CheckingAccount;
-import lk.dakshithahasindra.projects.Models.Client;
-import lk.dakshithahasindra.projects.Models.Model;
-import lk.dakshithahasindra.projects.Models.SavingsAccount;
+import lk.dakshithahasindra.projects.DB.ClientDataSource;
+import lk.dakshithahasindra.projects.Models.*;
 import lk.dakshithahasindra.projects.Views.ClientCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -35,13 +34,38 @@ public class CreateClientController implements Initializable {
     public Label lblError;
 
     public void btnCreateNewClientOnAction(ActionEvent actionEvent) throws InterruptedException {
+        try {
+            int i = ClientDataSource.nextCustomerId();
+            System.out.println(i);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (!ValidateData.validateClient(this)) {
+            return;
+        }
+        lblError.setText(null);
+
+        createSavingsAccount();
+
+//        TODO : Create account instances, Create client, Input data to DB
+//        TODO : Add Client anchorpane to admin clients view
 
 
+//    TODO : set the stage to the listview of clients
+//        TODO : Delete dummy values set above and use values from GUI textBoxes
+    }
+
+    private SavingsAccount createSavingsAccount() {
+
+        return null;
+    }
+
+    private void addDummyClient(){
 
         SavingsAccount sa = new SavingsAccount("Dakshitha hasindra","1234567891234567",10000,100000);
         CheckingAccount ca = new CheckingAccount("Dakshitha hasindra","1234567891234567",10000,100000);
         Client cl1 = new Client("Dakshitha","Hasindra",ca,sa, LocalDate.now());
-        ObservableList<Node> children = Model.getInstance().getViewFactory().getClientsView().getChildren();
+//        ObservableList<Node> children = Model.getInstance().getViewFactory().getClientsView().getChildren();
 
 //        System.out.println(Model.getInstance().getViewFactory().getClientsView().getChildren());
 
@@ -61,13 +85,28 @@ public class CreateClientController implements Initializable {
             new Alert(Alert.AlertType.ERROR,"Failed to load Clients");
             e.printStackTrace();
         }
-
-//    TODO : set the stage to the listview of clients
-//        TODO : Delete dummy values set above and use values from GUI textBoxes
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtCheckingDeposite.setEditable(false);
+        txtSavingsAccDeposite.setEditable(false);
+        lblError.setText(null);
 
+        cbCheckingAccount.selectedProperty().addListener(observable -> {
+            if(cbCheckingAccount.isSelected()){
+                lblCheckingAccNumber.setText(GenerateAccountNumber.generateAccNumber());
+                txtCheckingDeposite.setEditable(true);
+            }
+        });
+
+        cbSavingsAccount.selectedProperty().addListener(observable -> {
+            if(cbSavingsAccount.isSelected()){
+                lblSavingsAccNumber.setText(GenerateAccountNumber.generateAccNumber());
+                txtSavingsAccDeposite.setEditable(true);
+            }
+        });
     }
+
+
 }
