@@ -34,17 +34,26 @@ public class CreateClientController implements Initializable {
     public Label lblError;
 
     public void btnCreateNewClientOnAction(ActionEvent actionEvent) throws InterruptedException {
-        try {
-            int i = ClientDataSource.nextCustomerId();
-            System.out.println(i);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
         if (!ValidateData.validateClient(this)) {
             return;
         }
+
         lblError.setText(null);
 
+        int newID ;
+//        try {
+//            newID = ClientDataSource.insertCustomer("Dakshitha","Hasindra");
+//
+//        } catch (SQLException e) {
+//            new Alert(Alert.AlertType.ERROR,"Failed to save the CLient");
+//            return;
+//        }
+        int newId = createClient();
+        if(newId==-1){
+            new Alert(Alert.AlertType.ERROR,"Failed to save Client, Please Retry!");
+            return;
+        }
+//        TODO : CREATE two accounts and instance of client
         createSavingsAccount();
 
 //        TODO : Create account instances, Create client, Input data to DB
@@ -53,6 +62,15 @@ public class CreateClientController implements Initializable {
 
 //    TODO : set the stage to the listview of clients
 //        TODO : Delete dummy values set above and use values from GUI textBoxes
+    }
+
+    private int createClient() {
+        try {
+            int newId = ClientDataSource.insertCustomer(txtFirstName.getText().strip(), txtLastName.getText().strip());
+            return newId;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private SavingsAccount createSavingsAccount() {

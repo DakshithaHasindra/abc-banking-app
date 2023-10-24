@@ -2,10 +2,7 @@ package lk.dakshithahasindra.projects.DB;
 
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ClientDataSource {
     private static Connection connection = SingleDataConnection.getInstance().getConnection();
@@ -24,5 +21,20 @@ public class ClientDataSource {
         rst.next();
         int lastID = rst.getInt("AUTO_INCREMENT");
         return lastID;
+    }
+
+    public static int insertCustomer(String fname, String lname) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clients(f_name, l_name) VALUES (?,?)");
+        preparedStatement.setString(1,fname);
+        preparedStatement.setString(2,lname);
+        int affetedRows = preparedStatement.executeUpdate();
+        if(affetedRows==1){
+            Statement statement = connection.createStatement();
+            ResultSet rst = statement.executeQuery("SELECT last_insert_id()");
+            rst.next();
+            return rst.getInt(1);
+        }else {
+            return -1;
+        }
     }
 }
