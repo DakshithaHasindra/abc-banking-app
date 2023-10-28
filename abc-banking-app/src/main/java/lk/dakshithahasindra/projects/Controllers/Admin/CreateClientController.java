@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.dakshithahasindra.projects.DB.AccountDataAccess;
 import lk.dakshithahasindra.projects.DB.ClientDataSource;
 import lk.dakshithahasindra.projects.Models.*;
 import lk.dakshithahasindra.projects.Views.ClientCellFactory;
@@ -40,7 +41,7 @@ public class CreateClientController implements Initializable {
 
         lblError.setText(null);
 
-        int newID ;
+//        int newID ;
 //        try {
 //            newID = ClientDataSource.insertCustomer("Dakshitha","Hasindra");
 //
@@ -54,7 +55,14 @@ public class CreateClientController implements Initializable {
             return;
         }
 //        TODO : CREATE two accounts and instance of client
-        createSavingsAccount();
+        System.out.println(newId);
+        try {
+            createSavingsAccount(newId);
+            System.out.println("Create Ne Customer");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Failed to save the Savings Account");
+        }
 
 //        TODO : Create account instances, Create client, Input data to DB
 //        TODO : Add Client anchorpane to admin clients view
@@ -62,6 +70,12 @@ public class CreateClientController implements Initializable {
 
 //    TODO : set the stage to the listview of clients
 //        TODO : Delete dummy values set above and use values from GUI textBoxes
+    }
+
+    private void createSavingsAccount(int newId) throws SQLException {
+        Account newSavingAccount = new SavingsAccount(txtFirstName.getText()+" "+txtLastName.getText(),newId, lblSavingsAccNumber.getText(), Double.valueOf(txtSavingsAccDeposite.getText()),100000.00);
+        boolean b = AccountDataAccess.insertSavingsAccount((SavingsAccount) newSavingAccount);
+        System.out.println(b);
     }
 
     private int createClient() {
@@ -73,25 +87,21 @@ public class CreateClientController implements Initializable {
         }
     }
 
-    private SavingsAccount createSavingsAccount() {
-
-        return null;
-    }
 
     private void addDummyClient(){
 
-        SavingsAccount sa = new SavingsAccount("Dakshitha hasindra","1234567891234567",10000,100000);
-        CheckingAccount ca = new CheckingAccount("Dakshitha hasindra","1234567891234567",10000,100000);
-        Client cl1 = new Client("Dakshitha","Hasindra",ca,sa, LocalDate.now());
+//        SavingsAccount sa = new SavingsAccount("Dakshitha hasindra","1234567891234567",10000,100000);
+//        CheckingAccount ca = new CheckingAccount("Dakshitha hasindra","1234567891234567",10000,100000);
+//        Client cl1 = new Client("Dakshitha","Hasindra",ca,sa, LocalDate.now());
 //        ObservableList<Node> children = Model.getInstance().getViewFactory().getClientsView().getChildren();
 
 //        System.out.println(Model.getInstance().getViewFactory().getClientsView().getChildren());
 
 
         FXMLLoader clientsFxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Admin/ClientCell.fxml"));
-        ClientCellController clientCellController1 =new ClientCellController(cl1);
+//        ClientCellController clientCellController1 =new ClientCellController(cl1);
 //        Thread.sleep(100);
-        clientsFxmlLoader.setController(clientCellController1);
+//        clientsFxmlLoader.setController(clientCellController1);
         try {
             AnchorPane clientCellView = clientsFxmlLoader.load();
             Scene clientCellScene = new Scene(clientCellView);

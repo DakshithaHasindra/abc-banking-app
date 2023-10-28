@@ -6,9 +6,10 @@ CREATE TABLE IF NOT EXISTS clients (
 
 CREATE TABLE IF NOT EXISTS account(
   account_number VARCHAR(20) PRIMARY KEY ,
+    client_id INT NOT NULL ,
+    name VARCHAR(50) NOT NULL,
   is_saving_acc BOOLEAN NOT NULL ,
   balance DECIMAL(8,2) ,
-  client_id INT NOT NULL ,
   CONSTRAINT fk_account FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
