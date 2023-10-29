@@ -25,8 +25,12 @@ public class ClientCellController implements Initializable {
         Platform.runLater(()-> {
             lblFirstName.setText(client.firstNameProperty().get());
             lblLastName.setText(client.lastNameProperty().get());
-            lblCheckingAcNo.setText(client.checkingAccountProperty().get().accountNumberProperty().get());
-            lblSavingsAccNo.setText(client.savingsAccountProperty().get().accountNumberProperty().get());
+            if(client.checkingAccountProperty().get()!=null){
+                lblCheckingAcNo.setText(client.checkingAccountProperty().get().accountNumberProperty().get());
+            }
+            if(client.savingsAccountProperty().get()!=null){
+                lblSavingsAccNo.setText(client.savingsAccountProperty().get().accountNumberProperty().get());
+            }
         });
     }
 

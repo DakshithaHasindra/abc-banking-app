@@ -146,6 +146,7 @@ public class ViewFactory {
                 clientView=new FXMLLoader(getClass().getResource("/Fxml/Admin/Clients.fxml")).load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
+
             }
         }
         return clientView;
