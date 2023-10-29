@@ -1,4 +1,4 @@
-package lk.dakshithahasindra.projects.DB;
+package lk.dakshithahasindra.projects.Models.DB;
 
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
 

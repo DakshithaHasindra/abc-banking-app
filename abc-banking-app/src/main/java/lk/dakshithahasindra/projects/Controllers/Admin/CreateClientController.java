@@ -1,23 +1,19 @@
 package lk.dakshithahasindra.projects.Controllers.Admin;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.dakshithahasindra.projects.DB.AccountDataAccess;
-import lk.dakshithahasindra.projects.DB.ClientDataSource;
+import lk.dakshithahasindra.projects.Models.DB.AccountDataAccess;
+import lk.dakshithahasindra.projects.Models.DB.ClientDataSource;
 import lk.dakshithahasindra.projects.Models.*;
-import lk.dakshithahasindra.projects.Views.ClientCellFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class CreateClientController implements Initializable {
@@ -34,7 +30,8 @@ public class CreateClientController implements Initializable {
     public Button btnCreateNewClient;
     public Label lblError;
 
-    public void btnCreateNewClientOnAction(ActionEvent actionEvent) throws InterruptedException {
+    public void btnCreateNewClientOnAction(ActionEvent actionEvent) throws InterruptedException, SQLException {
+        System.out.println("Is Checking Accoount Selected : "+cbCheckingAccount.isSelected());
         if (!ValidateData.validateClient(this)) {
             return;
         }
@@ -56,13 +53,23 @@ public class CreateClientController implements Initializable {
         }
 //        TODO : CREATE two accounts and instance of client
         System.out.println(newId);
+//        SingleDataConnection.getInstance().getConnection().setAutoCommit(false));
         try {
-            createSavingsAccount(newId);
+            SingleDataConnection.getInstance().getConnection().setAutoCommit(false);
+            if(cbSavingsAccount.isSelected()) {
+                createSavingsAccount(newId);
+            }
+            if(cbCheckingAccount.isSelected()){
+                createCheckingAccount(newId);
+            }
             System.out.println("Create Ne Customer");
+            SingleDataConnection.getInstance().getConnection().commit();
         } catch (SQLException e) {
+            SingleDataConnection.getInstance().getConnection().rollback();
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Failed to save the Savings Account");
+            new Alert(Alert.AlertType.ERROR,"Failed to save the Account");
         }
+        SingleDataConnection.getInstance().getConnection().setAutoCommit(true);
 
 //        TODO : Create account instances, Create client, Input data to DB
 //        TODO : Add Client anchorpane to admin clients view
@@ -70,6 +77,12 @@ public class CreateClientController implements Initializable {
 
 //    TODO : set the stage to the listview of clients
 //        TODO : Delete dummy values set above and use values from GUI textBoxes
+    }
+
+    private void createCheckingAccount(int newId) throws SQLException {
+        Account newCheckingAccount = new CheckingAccount(txtFirstName.getText()+" "+txtLastName.getText(),newId, lblCheckingAccNumber.getText(), Double.valueOf(txtCheckingDeposite.getText()),100000.00);
+        boolean b = AccountDataAccess.insertCheckingAccount((CheckingAccount) newCheckingAccount);
+        System.out.println(b);
     }
 
     private void createSavingsAccount(int newId) throws SQLException {
@@ -125,6 +138,8 @@ public class CreateClientController implements Initializable {
             if(cbCheckingAccount.isSelected()){
                 lblCheckingAccNumber.setText(GenerateAccountNumber.generateAccNumber());
                 txtCheckingDeposite.setEditable(true);
+            }else {
+                lblCheckingAccNumber.setText("");
             }
         });
 
@@ -132,6 +147,9 @@ public class CreateClientController implements Initializable {
             if(cbSavingsAccount.isSelected()){
                 lblSavingsAccNumber.setText(GenerateAccountNumber.generateAccNumber());
                 txtSavingsAccDeposite.setEditable(true);
+            }
+            else {
+                lblSavingsAccNumber.setText("");
             }
         });
     }

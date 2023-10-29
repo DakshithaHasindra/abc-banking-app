@@ -1,5 +1,6 @@
-package lk.dakshithahasindra.projects.DB;
+package lk.dakshithahasindra.projects.Models.DB;
 
+import lk.dakshithahasindra.projects.Models.CheckingAccount;
 import lk.dakshithahasindra.projects.Models.SavingsAccount;
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
 
@@ -27,5 +28,16 @@ public class AccountDataAccess {
 
 
 
+    }
+
+    public static boolean insertCheckingAccount(CheckingAccount newCheckingAccount) throws SQLException {
+        PreparedStatement preparedStatement = dbConnection.prepareStatement("INSERT INTO account(account_number, client_id, name, is_saving_acc, balance) VALUES (?,?,?,?,?)");
+        preparedStatement.setString(1,newCheckingAccount.accountNumberProperty().get());
+        preparedStatement.setInt(2,newCheckingAccount.getOwnerId());
+        preparedStatement.setString(3,newCheckingAccount.ownerProperty().get());
+        preparedStatement.setBoolean(4,false);
+        preparedStatement.setDouble(5,newCheckingAccount.balanceProperty().get());
+        int i = preparedStatement.executeUpdate();
+        return (i==-1)?false:true;
     }
 }
