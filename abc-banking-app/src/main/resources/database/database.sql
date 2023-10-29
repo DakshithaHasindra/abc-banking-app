@@ -1,14 +1,15 @@
 CREATE TABLE IF NOT EXISTS clients (
-    id VARCHAR(10) PRIMARY KEY ,
+    id INT AUTO_INCREMENT PRIMARY KEY ,
     f_name VARCHAR(50) NOT NULL ,
     l_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS account(
   account_number VARCHAR(20) PRIMARY KEY ,
+    client_id INT NOT NULL ,
+    name VARCHAR(50) NOT NULL,
   is_saving_acc BOOLEAN NOT NULL ,
   balance DECIMAL(8,2) ,
-  client_id VARCHAR(10) NOT NULL ,
   CONSTRAINT fk_account FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 

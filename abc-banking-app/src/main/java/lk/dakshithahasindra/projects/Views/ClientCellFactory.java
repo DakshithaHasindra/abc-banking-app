@@ -1,5 +1,6 @@
 package lk.dakshithahasindra.projects.Views;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import lk.dakshithahasindra.projects.Controllers.Admin.ClientCellController;
@@ -17,6 +18,7 @@ public class ClientCellFactory extends ListCell<Client> {
         }else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Fxml/Admin/ClientCell.fxml"));
             ClientCellController clientCellController = new ClientCellController(client);
+//            setValuesInGUI(clientCellController,client);
             fxmlLoader.setController(clientCellController);
             setText(null);
             try {
@@ -26,5 +28,15 @@ public class ClientCellFactory extends ListCell<Client> {
             }
         }
 
+    }
+
+    private void setValuesInGUI(ClientCellController clientCellController,Client client) {
+        Platform.runLater(()->{
+            clientCellController.lblFirstName.setText(client.firstNameProperty().get());
+            clientCellController.lblLastName.setText(client.lastNameProperty().get());
+            clientCellController.lblSavingsAccNo.setText(client.savingsAccountProperty().get().accountNumberProperty().get());
+            clientCellController.lblCheckingAcNo.setText(client.checkingAccountProperty().get().accountNumberProperty().get());
+
+        });
     }
 }

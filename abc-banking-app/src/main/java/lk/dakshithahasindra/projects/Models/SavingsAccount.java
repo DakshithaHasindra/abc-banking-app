@@ -7,8 +7,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class SavingsAccount extends Account{
     private final DoubleProperty withdrawalLimit;
 
-    public SavingsAccount(String owner, String accountNumber, double balance,double withdrawalLimit) {
-        super(owner, accountNumber, balance);
+    public SavingsAccount(String owner,int ownerID, String accountNumber, double balance,double withdrawalLimit) {
+        super(owner, ownerID, accountNumber, balance);
         this.withdrawalLimit = new SimpleDoubleProperty(this,"WithdrawalLimit",withdrawalLimit);
     }
 
