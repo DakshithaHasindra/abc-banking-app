@@ -5,6 +5,7 @@ module ABC.Bank {
     requires java.sql;
     requires mysql.connector.j;
     requires lombok;
+    requires org.apache.commons.codec;
 
     opens lk.dakshithahasindra.projects to javafx.fxml;
     exports lk.dakshithahasindra.projects;

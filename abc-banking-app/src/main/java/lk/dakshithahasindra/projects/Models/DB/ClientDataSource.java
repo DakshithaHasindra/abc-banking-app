@@ -24,10 +24,11 @@ public class ClientDataSource {
         return lastID;
     }
 
-    public static int insertCustomer(String fname, String lname) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clients(f_name, l_name) VALUES (?,?)");
+    public static int insertCustomer(String fname, String lname,String password) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clients(f_name, l_name,password) VALUES (?,?,?)");
         preparedStatement.setString(1,fname);
         preparedStatement.setString(2,lname);
+        preparedStatement.setString(3,password);
         int affetedRows = preparedStatement.executeUpdate();
         if(affetedRows==1){
             Statement statement = connection.createStatement();

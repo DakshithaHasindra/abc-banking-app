@@ -9,6 +9,9 @@ public class GenerateAccountNumber {
             double random = Math.random();
            accountNumber.append(Math.round(random*10%10));
         }
+        if(accountNumber.length()!=16){
+            return generateAccNumber();
+        }
         return accountNumber.toString();
     }
 }
