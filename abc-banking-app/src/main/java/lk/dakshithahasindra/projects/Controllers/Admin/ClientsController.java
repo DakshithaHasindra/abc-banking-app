@@ -22,6 +22,7 @@ public class ClientsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Initialized()");
 //        Load all clients to the list
             loadAllClients();
 //            addDummyClient();

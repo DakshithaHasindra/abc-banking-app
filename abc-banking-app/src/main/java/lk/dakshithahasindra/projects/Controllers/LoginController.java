@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lk.dakshithahasindra.projects.Models.Model;
 import lk.dakshithahasindra.projects.Views.AccountType;
+import lk.dakshithahasindra.projects.Views.sharedData.SharedCurrentLoginData;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,8 +33,10 @@ public class LoginController  implements Initializable {
     private void onLogin() {
 
         if(acc_selector.getSelectionModel().getSelectedItem()==AccountType.ADMIN){
+            SharedCurrentLoginData.getInstance().loginID = txtUsername.getText().strip();
             Model.getInstance().getViewFactory().showAdminWindow();
         }else {
+            SharedCurrentLoginData.getInstance().loginID = txtUsername.getText().strip();
             Model.getInstance().getViewFactory().showClientWindow();
         }
         Stage loginStage =(Stage) lblError.getScene().getWindow();
