@@ -1,5 +1,7 @@
 package lk.dakshithahasindra.projects.Controllers.Admin;
 
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,11 +18,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DepositeController implements Initializable {
+public class DepositController implements Initializable {
     public AnchorPane rootAdminDeposits;
     public TextField txtSearch;
     public Button btnSearch;
-    public ListView<AnchorPane> lvSearchedList;
+    public ListView<String> lvSearchedList;
     public TextField txtAmount;
     public Button btnDeposit;
 
@@ -29,10 +31,22 @@ public class DepositeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        ArrayList<Client> clientsList;
-        accountList = loadAllAccounts();
+
+        txtSearch.focusedProperty().addListener(e->{
+            accountList = loadAllAccounts();
+        });
+
         txtSearch.textProperty().addListener(e->{
             filterAccounts(txtSearch.getText().strip());
         });
+
+        lvSearchedList.getSelectionModel().selectedItemProperty().addListener((o,prev,curr)->{
+            selectAccount(curr);
+        });
+    }
+
+    private void selectAccount(String curr) {
+
     }
 
     private ArrayList<Account> loadAllAccounts() {
@@ -48,17 +62,23 @@ public class DepositeController implements Initializable {
 
     private void filterAccounts(String search) {
 //        System.out.println(search);
-
+        lvSearchedList.getItems().clear();
         search = search.toLowerCase();
         for (Account account :
                 accountList) {
 //            System.out.println(client.firstNameProperty().get().toLowerCase());
 
+            System.out.println("GetClass()" +account.getClass().getSimpleName());
+
             if( account.ownerProperty().get().strip().toLowerCase().contains(search)){
                 System.out.println(account.ownerProperty().get());
 //                System.out.println("Found");
+                lvSearchedList.getItems().add(account.ownerProperty().get().concat(" : ")
+                        .concat((account.getClass().getSimpleName().equals("SavingsAccount")?"Savings Acc/No - ":"Checking Acc/No - "))
+                        .concat(account.accountNumberProperty().get()));
             }
         }
+
     }
 
     private ArrayList<Client> loadAllClients() {

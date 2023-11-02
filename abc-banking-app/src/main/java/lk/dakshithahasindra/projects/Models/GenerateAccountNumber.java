@@ -7,11 +7,14 @@ public class GenerateAccountNumber {
         StringBuilder accountNumber = new StringBuilder();
         for (int i = 0 ; i < 16 ; i++){
             double random = Math.random();
-           accountNumber.append(Math.round(random*10%10));
+           accountNumber.append(Math.round((random*10)%10));
+
         }
         if(accountNumber.length()!=16){
+            System.out.println(accountNumber.length());
             return generateAccNumber();
         }
+        System.out.println(accountNumber.length());
         return accountNumber.toString();
     }
 }
