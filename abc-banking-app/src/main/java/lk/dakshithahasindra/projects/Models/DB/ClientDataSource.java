@@ -90,4 +90,28 @@ public class ClientDataSource {
 
         return accounts;
     }
+
+    public static Client loadLoggedInClient(int id) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM clients WHERE id=?");
+        preparedStatement.setString(1,String.valueOf(id));
+        ResultSet rst = preparedStatement.executeQuery();
+        if(!rst.next()){
+            return null;
+        }
+
+//        int clientID = rst.getInt("id");
+        String fName = rst.getString("f_name");
+        String lName = rst.getString("l_name");
+        String password = rst.getString("password");
+        ArrayList<Account> accounts = loadAccounts(id);
+        SavingsAccount savingsAccount = (accounts.get(0)==null ? null : (SavingsAccount) accounts.get(0));
+        CheckingAccount checkingAccount = (accounts.get(0)==null ? null : (CheckingAccount) accounts.get(1));
+        Client client = new Client(fName, lName, checkingAccount, savingsAccount);
+
+        /*TODO : use account data access to create the account*/
+
+
+
+        return client;
+    }
 }

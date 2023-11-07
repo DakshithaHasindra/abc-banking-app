@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.dakshithahasindra.projects.Views.sharedData.SharedCurrentLoginData;
 
 public class AccountsController {
     public AnchorPane rootClientProfile;
@@ -20,6 +21,10 @@ public class AccountsController {
     public Button btnTransferToSA;
     public Button btnTransferToCA;
     public TextField txtTransferAmountToCA;
+
+    public void initialize(){
+//        System.out.println(SharedCurrentLoginData.getInstance().loginID);
+    }
 
     public void btnTransferToSAOnAction(ActionEvent actionEvent) {
     }

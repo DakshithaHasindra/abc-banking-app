@@ -3,6 +3,7 @@ package lk.dakshithahasindra.projects.Controllers.Client;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import lk.dakshithahasindra.projects.Views.sharedData.SharedCurrentLoginData;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,8 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(SharedCurrentLoginData.loginID);
+        System.out.println(SharedCurrentLoginData.loggedInClient.checkingAccountProperty().get());
 
     }
 }
