@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lk.dakshithahasindra.projects.Models.Client;
+import lk.dakshithahasindra.projects.Models.DB.ClientDataSource;
 import lk.dakshithahasindra.projects.Models.DB.TransactionsDataSource;
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
 import lk.dakshithahasindra.projects.Models.Transaction;
@@ -97,6 +98,8 @@ public class AccountsController {
             TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
             TransactionsDataSource.updateAccountBalance(transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
 
+
+
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -113,6 +116,14 @@ public class AccountsController {
         }
 
 
+        try {
+            SharedCurrentLoginData.loggedInClient = ClientDataSource.loadLoggedInClient(Integer.valueOf(SharedCurrentLoginData.loginID));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        initialize();
+
     }
 
     private boolean isValidAmount(String amount) {
@@ -122,6 +133,48 @@ public class AccountsController {
     }
 
     public void btnTransferToCAOnAction(ActionEvent actionEvent) {
+
+        Client loggedClient = SharedCurrentLoginData.loggedInClient;
+        if(!isValidAmount(txtTransferAmountToCA.getText().strip())){
+            txtTransferAmountToCA.selectAll();
+            txtTransferAmountToCA.requestFocus();
+            return;
+        }
+        double transferAmount = Double.parseDouble(txtTransferAmountToCA.getText());
+        if(transferAmount>loggedClient.savingsAccountProperty().get().balanceProperty().get()-1000){
+            new Alert(Alert.AlertType.ERROR,"Insufficient Balance").show();
+            return;
+        }
+        Connection connection = SingleDataConnection.getInstance().getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
+            TransactionsDataSource.updateAccountBalance(+transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                e.printStackTrace();
+            }
+            new Alert(Alert.AlertType.ERROR,"Unknown Error occurred").show();
+            e.printStackTrace();
+        }
+        try {
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            SharedCurrentLoginData.loggedInClient = ClientDataSource.loadLoggedInClient(Integer.valueOf(SharedCurrentLoginData.loginID));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        initialize();
+
 
     }
 
