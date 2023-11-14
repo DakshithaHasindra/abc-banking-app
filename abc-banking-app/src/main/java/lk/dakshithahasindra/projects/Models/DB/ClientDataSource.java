@@ -77,15 +77,18 @@ public class ClientDataSource {
             Double balance = rst.getDouble("balance");
             if(rst.getBoolean("is_saving_acc")){
                 SavingsAccount savingsAccount = new SavingsAccount(owner,id,accountNumber,balance,100000.00);
-                accounts.add(0,savingsAccount);
-
+                accounts.set(0,savingsAccount);
+                continue;
             }
+
             if(!rst.getBoolean("is_saving_acc")) {
+                System.out.println("Passed Throug here");
                 CheckingAccount checkingAccount = new CheckingAccount(owner, id, accountNumber, balance, 100000.00);
-                accounts.add(1,checkingAccount);
+                accounts.set(1,checkingAccount);
                 continue;
             }
         }
+        System.out.println(accounts);
 
 
         return accounts;
@@ -105,7 +108,9 @@ public class ClientDataSource {
         String password = rst.getString("password");
         ArrayList<Account> accounts = loadAccounts(id);
         SavingsAccount savingsAccount = (accounts.get(0)==null ? null : (SavingsAccount) accounts.get(0));
-        CheckingAccount checkingAccount = (accounts.get(0)==null ? null : (CheckingAccount) accounts.get(1));
+        System.out.println("Savings Account : "+ savingsAccount);
+        CheckingAccount checkingAccount = (accounts.get(1)==null ? null : (CheckingAccount) accounts.get(1));
+        System.out.println("Checking Account : "+ checkingAccount);
         Client client = new Client(fName, lName, checkingAccount, savingsAccount);
 
         /*TODO : use account data access to create the account*/
