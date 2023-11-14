@@ -1,13 +1,12 @@
 package lk.dakshithahasindra.projects.Models.DB;
 
+import lk.dakshithahasindra.projects.Models.Account;
 import lk.dakshithahasindra.projects.Models.CheckingAccount;
 import lk.dakshithahasindra.projects.Models.SavingsAccount;
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class AccountDataAccess {
     private static Connection dbConnection = SingleDataConnection.getInstance().getConnection();
@@ -40,4 +39,32 @@ public class AccountDataAccess {
         int i = preparedStatement.executeUpdate();
         return (i==-1)?false:true;
     }
+
+    public static ArrayList<Account> loadAllAccounts() throws SQLException {
+        ArrayList<Account> accountList = new ArrayList<>();
+        Statement statement = dbConnection.createStatement();
+        ResultSet rst = statement.executeQuery("SELECT * FROM account");
+        while (rst.next()){
+            String accountNumber = rst.getString("account_number");
+            int clientID = rst.getInt("client_id");
+            String name = rst.getString("name");
+            boolean isSavingAccount = rst.getBoolean("is_saving_acc");
+            double balance = rst.getDouble("balance");
+
+            if (isSavingAccount){
+                SavingsAccount savingsAccount = new SavingsAccount(name, clientID, accountNumber, balance, 100000);
+                accountList.add(savingsAccount);
+                continue;
+            }else {
+                CheckingAccount checkingAccount = new CheckingAccount(name, clientID, accountNumber, balance, 100000);
+                accountList.add(checkingAccount);
+                continue;
+            }
+        }
+
+        return accountList;
+
+    }
+
+
 }

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import lk.dakshithahasindra.projects.Models.DB.AccountDataAccess;
 import lk.dakshithahasindra.projects.Models.DB.ClientDataSource;
 import lk.dakshithahasindra.projects.Models.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -93,7 +94,8 @@ public class CreateClientController implements Initializable {
 
     private int createClient() {
         try {
-            int newId = ClientDataSource.insertCustomer(txtFirstName.getText().strip(), txtLastName.getText().strip());
+            String hashedPassword   = DigestUtils.sha256Hex(txtPassword.getText());
+            int newId = ClientDataSource.insertCustomer(txtFirstName.getText().strip(), txtLastName.getText().strip(),hashedPassword);
             return newId;
         } catch (SQLException e) {
             throw new RuntimeException(e);

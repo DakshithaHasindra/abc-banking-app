@@ -141,14 +141,14 @@ public class ViewFactory {
 
 
     public AnchorPane getClientsView() {
-        if(clientView==null){
+//        if(clientView==null){
             try {
                 clientView=new FXMLLoader(getClass().getResource("/Fxml/Admin/Clients.fxml")).load();
             } catch (IOException e) {
                 throw new RuntimeException(e);
 
             }
-        }
+//        }
         return clientView;
     }
 
