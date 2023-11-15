@@ -19,6 +19,7 @@ import lk.dakshithahasindra.projects.Views.sharedData.SharedCurrentLoginData;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class AccountsController {
     public AnchorPane rootClientProfile;
@@ -39,25 +40,25 @@ public class AccountsController {
     public Text lblSavingsAcc;
     public VBox VBoxSavingsAcc;
 
-    public void initialize(){
+    public void initialize() {
 //        System.out.println(SharedCurrentLoginData.getInstance().loginID);
 
         txtTransferAmountToCA.clear();
         txtTransferAmountToSA.clear();
         loadAccountData();
         Client loggedInClient = SharedCurrentLoginData.loggedInClient;
-        if(loggedInClient.checkingAccountProperty().get()==null){
-            for (Node node:
-                    new Node[]{txtTransferAmountToCA,txtTransferAmountToSA,btnTransferToCA,btnTransferToSA}) {
+        if (loggedInClient.checkingAccountProperty().get() == null) {
+            for (Node node :
+                    new Node[]{txtTransferAmountToCA, txtTransferAmountToSA, btnTransferToCA, btnTransferToSA}) {
                 node.setDisable(true);
             }
             lblCheckingAcc.setVisible(false);
             VBoxChekingAcc.setVisible(false);
         }
 
-        if(loggedInClient.savingsAccountProperty().get()==null){
-            for (Node node:
-                    new Node[]{txtTransferAmountToCA,txtTransferAmountToSA,btnTransferToCA,btnTransferToSA}) {
+        if (loggedInClient.savingsAccountProperty().get() == null) {
+            for (Node node :
+                    new Node[]{txtTransferAmountToCA, txtTransferAmountToSA, btnTransferToCA, btnTransferToSA}) {
                 node.setDisable(true);
             }
             lblSavingsAcc.setVisible(false);
@@ -67,49 +68,50 @@ public class AccountsController {
 
     private void loadAccountData() {
         Client loggedClient = SharedCurrentLoginData.loggedInClient;
-        if (loggedClient.checkingAccountProperty().get()!=null){
+        if (loggedClient.checkingAccountProperty().get() != null) {
             lblCAAccountNumber.setText(loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
             lblCATransactionLimit.setText("Rs. 100,000.00");
 //        lblCACreatedDate.setText(); TODO: SetCreatedDate
-            lblCABalance.setText("Rs. "+loggedClient.checkingAccountProperty().get().balanceProperty().get());
+            lblCABalance.setText("Rs. " + loggedClient.checkingAccountProperty().get().balanceProperty().get());
         }
 
-        if (loggedClient.savingsAccountProperty().get()!=null){
+        if (loggedClient.savingsAccountProperty().get() != null) {
             lblSANumber.setText(loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
             lblSAWithdrawalLimit.setText("Rs. 100,000.00");
 //        lblSACreatedDate.setText(); TODO: SetCreatedDate
-            lblSABalance.setText("Rs. "+loggedClient.savingsAccountProperty().get().balanceProperty().get());
+            lblSABalance.setText("Rs. " + loggedClient.savingsAccountProperty().get().balanceProperty().get());
         }
     }
 
     public void btnTransferToSAOnAction(ActionEvent actionEvent) {
         Client loggedClient = SharedCurrentLoginData.loggedInClient;
-        if(!isValidAmount(txtTransferAmountToSA.getText().strip())){
+        if (!isValidAmount(txtTransferAmountToSA.getText().strip())) {
             txtTransferAmountToSA.selectAll();
             txtTransferAmountToSA.requestFocus();
             return;
         }
         double transferAmount = Double.parseDouble(txtTransferAmountToSA.getText());
-        if(transferAmount>loggedClient.checkingAccountProperty().get().balanceProperty().get()-1000){
-            new Alert(Alert.AlertType.ERROR,"Insufficient Balance").show();
+        if (transferAmount > loggedClient.checkingAccountProperty().get().balanceProperty().get() - 1000) {
+            new Alert(Alert.AlertType.ERROR, "Insufficient Balance").show();
             return;
         }
         Connection connection = SingleDataConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
-            TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
-            TransactionsDataSource.updateAccountBalance(transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
-
+            TransactionsDataSource.updateAccountBalance(-transferAmount, loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
+            TransactionsDataSource.updateAccountBalance(transferAmount, loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
+            TransactionsDataSource.transactionsTableUpdate(loggedClient.checkingAccountProperty().get().accountNumberProperty().get(), loggedClient.savingsAccountProperty().get().accountNumberProperty().get(), transferAmount, LocalDate.now());
 
             connection.commit();
-        } catch (SQLException e) {
+            new Alert(Alert.AlertType.INFORMATION, "Transaction Complete").show();
+        } catch (Exception e) {
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
-            new Alert(Alert.AlertType.ERROR,"Unknown Error occurred").show();
+            new Alert(Alert.AlertType.ERROR, "Unknown Error occurred").show();
             e.printStackTrace();
         }
         try {
@@ -126,46 +128,47 @@ public class AccountsController {
         }
 
         initialize();
-        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
+
 
 
     }
 
     private boolean isValidAmount(String amount) {
         boolean isValid;
-        isValid= amount.matches("^[1-9][0-9]*0{2}(.00)?$");
+        isValid = amount.matches("^[1-9][0-9]*0{2}(.00)?$");
         return isValid;
     }
 
     public void btnTransferToCAOnAction(ActionEvent actionEvent) {
 
         Client loggedClient = SharedCurrentLoginData.loggedInClient;
-        if(!isValidAmount(txtTransferAmountToCA.getText().strip())){
+        if (!isValidAmount(txtTransferAmountToCA.getText().strip())) {
             txtTransferAmountToCA.selectAll();
             txtTransferAmountToCA.requestFocus();
             return;
         }
         double transferAmount = Double.parseDouble(txtTransferAmountToCA.getText());
-        if(transferAmount>loggedClient.savingsAccountProperty().get().balanceProperty().get()-1000){
-            new Alert(Alert.AlertType.ERROR,"Insufficient Balance").show();
+        if (transferAmount > loggedClient.savingsAccountProperty().get().balanceProperty().get() - 1000) {
+            new Alert(Alert.AlertType.ERROR, "Insufficient Balance").show();
             return;
         }
         Connection connection = SingleDataConnection.getInstance().getConnection();
 
         try {
             connection.setAutoCommit(false);
-            TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
-            TransactionsDataSource.updateAccountBalance(+transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
-
+            TransactionsDataSource.updateAccountBalance(-transferAmount, loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
+            TransactionsDataSource.updateAccountBalance(+transferAmount, loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
+            TransactionsDataSource.transactionsTableUpdate(loggedClient.savingsAccountProperty().get().accountNumberProperty().get(), loggedClient.checkingAccountProperty().get().accountNumberProperty().get(), transferAmount, LocalDate.now());
 
             connection.commit();
-        } catch (SQLException e) {
+            new Alert(Alert.AlertType.INFORMATION, "Transaction Complete").show();
+        } catch (Exception e) {
             try {
                 connection.rollback();
             } catch (SQLException ex) {
                 e.printStackTrace();
             }
-            new Alert(Alert.AlertType.ERROR,"Unknown Error occurred").show();
+            new Alert(Alert.AlertType.ERROR, "Unknown Error occurred").show();
             e.printStackTrace();
         }
         try {
@@ -182,7 +185,7 @@ public class AccountsController {
 
         initialize();
 
-        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
+
 
     }
 
