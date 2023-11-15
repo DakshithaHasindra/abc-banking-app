@@ -99,7 +99,7 @@ public class AccountsController {
             TransactionsDataSource.updateAccountBalance(transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
 
 
-
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -152,6 +152,8 @@ public class AccountsController {
             TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
             TransactionsDataSource.updateAccountBalance(+transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
 
+
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
