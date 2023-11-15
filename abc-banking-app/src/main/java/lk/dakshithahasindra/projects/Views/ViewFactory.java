@@ -90,6 +90,9 @@ public class ViewFactory {
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.setTitle("ABC Bank");
             stage.setResizable(false);
+//            stage.setOnCloseRequest(event -> {
+//                event.consume();
+//            });
             stage.getIcons().add(new Image(String.valueOf(ViewFactory.class.getResource("/Images/bandcamp-abc-bank-icon.png"))));
             stage.show();
         } catch (IOException e) {

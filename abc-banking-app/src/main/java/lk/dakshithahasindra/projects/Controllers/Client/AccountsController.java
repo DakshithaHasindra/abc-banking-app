@@ -41,6 +41,9 @@ public class AccountsController {
 
     public void initialize(){
 //        System.out.println(SharedCurrentLoginData.getInstance().loginID);
+
+        txtTransferAmountToCA.clear();
+        txtTransferAmountToSA.clear();
         loadAccountData();
         Client loggedInClient = SharedCurrentLoginData.loggedInClient;
         if(loggedInClient.checkingAccountProperty().get()==null){
@@ -123,6 +126,8 @@ public class AccountsController {
         }
 
         initialize();
+        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
+
 
     }
 
@@ -177,6 +182,7 @@ public class AccountsController {
 
         initialize();
 
+        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
 
     }
 
