@@ -41,6 +41,9 @@ public class AccountsController {
 
     public void initialize(){
 //        System.out.println(SharedCurrentLoginData.getInstance().loginID);
+
+        txtTransferAmountToCA.clear();
+        txtTransferAmountToSA.clear();
         loadAccountData();
         Client loggedInClient = SharedCurrentLoginData.loggedInClient;
         if(loggedInClient.checkingAccountProperty().get()==null){
@@ -99,7 +102,7 @@ public class AccountsController {
             TransactionsDataSource.updateAccountBalance(transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
 
 
-
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -123,6 +126,8 @@ public class AccountsController {
         }
 
         initialize();
+        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
+
 
     }
 
@@ -152,6 +157,8 @@ public class AccountsController {
             TransactionsDataSource.updateAccountBalance(-transferAmount,loggedClient.savingsAccountProperty().get().accountNumberProperty().get());
             TransactionsDataSource.updateAccountBalance(+transferAmount,loggedClient.checkingAccountProperty().get().accountNumberProperty().get());
 
+
+            connection.commit();
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -175,6 +182,7 @@ public class AccountsController {
 
         initialize();
 
+        new Alert(Alert.AlertType.INFORMATION,"Transaction Complete").show();
 
     }
 

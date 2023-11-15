@@ -33,6 +33,8 @@ public class AppInitializer extends Application {
         ViewFactory viewFactory = Model.getInstance().getViewFactory();
         viewFactory.showLoggingWindow();
 
+
+
 //        ViewFactory viewFactory = new ViewFactory();
 //        viewFactory.showLoggingWindow();
 

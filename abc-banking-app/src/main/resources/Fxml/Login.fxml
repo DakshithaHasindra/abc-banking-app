@@ -25,7 +25,7 @@
             <TextField fx:id="txtUsername" styleClass="input_field" />
             <Label text="Password" />
             <TextField fx:id="txtPassword" layoutX="10.0" layoutY="66.0" styleClass="input_field" />
-            <Button fx:id="btnLogin" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btnLogin" defaultButton="true" mnemonicParsing="false" text="Button" />
             <Label fx:id="lblError" styleClass="error_lbl" text="Error" />
          </children>
       </VBox>
