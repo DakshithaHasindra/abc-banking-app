@@ -1,9 +1,11 @@
 package lk.dakshithahasindra.projects.Models.DB;
 
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
+import lk.dakshithahasindra.projects.Models.Transaction;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TransactionsDataSource {
@@ -22,24 +24,36 @@ public class TransactionsDataSource {
         int i = updateStatement.executeUpdate();
     }
 
-    public static void transactionsTableUpdate(String senderAccNo, String receiverAccNo,double amount) throws SQLException {
+    public static void transactionsTableUpdate(String senderAccNo, String receiverAccNo,double amount,LocalDate date) throws Exception {
 
         String transID = generateTransID();
 
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO transactions (trans_id, amount, sender_acc_no, receiver_acc_no) VALUES (?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO transactions (trans_id, amount, sender_acc_no, receiver_acc_no,date) VALUES (?,?,?,?,?)");
+        System.out.println(transID);
         preparedStatement.setString(1,transID);
 //        TODO: Above transaction ID has to unique
         preparedStatement.setDouble(2,amount);
         preparedStatement.setString(3,senderAccNo);
         preparedStatement.setString(4,receiverAccNo);
+        preparedStatement.setDate(5,Date.valueOf(date));
         preparedStatement.executeUpdate();
 
         PreparedStatement transactionCommonPreparedStatement = connection.prepareStatement("INSERT INTO accounts_transactions (account_number, trans_id) VALUES (?,?)");
-        preparedStatement.setString(1,senderAccNo);
-        preparedStatement.setString(2,transID);
-//        TODO : reciever data to common
+        transactionCommonPreparedStatement.setString(1,senderAccNo);
+        transactionCommonPreparedStatement.setString(2,transID);
+        int i = transactionCommonPreparedStatement.executeUpdate();
+//        if(i < 1 ){
+//            throw new Exception("Error in Saving data");
+//        }
+        transactionCommonPreparedStatement.setString(1,receiverAccNo);
+        transactionCommonPreparedStatement.setString(2,transID);
+         i = transactionCommonPreparedStatement.executeUpdate();
+
+
+//        TODO : reciever data to common :Done
     }
 
+//    TODo : Move below code to somewhere else
     public static String generateTransID(){
         LocalDate currentDate = LocalDate.now();
         int randomNum = new Random().nextInt(1000);
@@ -47,5 +61,13 @@ public class TransactionsDataSource {
         String transactionId = currentDate.toString() + "-" + randomNum+randomNum2;
 
         return transactionId;
+    }
+
+    public static ArrayList<Transaction> allTransactions(int id){
+        ArrayList<Transaction> transactionList = new ArrayList<>();
+//        connection.prepareStatement("SELECT * FROM transactions WHERE trans_id=")
+        System.out.println();
+        return null;
+
     }
 }

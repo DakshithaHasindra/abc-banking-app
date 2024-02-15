@@ -1,6 +1,7 @@
 package lk.dakshithahasindra.projects.Controllers.Client;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -19,6 +20,13 @@ public class TransactionCellController implements Initializable {
     private final Transaction transaction;
     public TransactionCellController(Transaction transaction){
         this.transaction = transaction;
+
+        Platform.runLater(()->{
+            lblTransDate.setText(transaction.dateProperty().get().toString());
+            lblAmount.setText("Rs. "+transaction.amountProperty().get());
+
+        });
+
     }
 
     @Override
