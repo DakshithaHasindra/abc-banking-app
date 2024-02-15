@@ -1,6 +1,7 @@
 package lk.dakshithahasindra.projects.Models.DB;
 
 import lk.dakshithahasindra.projects.Models.SingleDataConnection;
+import lk.dakshithahasindra.projects.Models.Transaction;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -52,6 +53,7 @@ public class TransactionsDataSource {
 //        TODO : reciever data to common :Done
     }
 
+//    TODo : Move below code to somewhere else
     public static String generateTransID(){
         LocalDate currentDate = LocalDate.now();
         int randomNum = new Random().nextInt(1000);
@@ -59,5 +61,13 @@ public class TransactionsDataSource {
         String transactionId = currentDate.toString() + "-" + randomNum+randomNum2;
 
         return transactionId;
+    }
+
+    public static ArrayList<Transaction> allTransactions(int id){
+        ArrayList<Transaction> transactionList = new ArrayList<>();
+//        connection.prepareStatement("SELECT * FROM transactions WHERE trans_id=")
+        System.out.println();
+        return null;
+
     }
 }

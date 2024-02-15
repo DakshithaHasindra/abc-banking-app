@@ -11,6 +11,11 @@ public class TransactionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadAllTransactionCells();
+    }
+
+    private void loadAllTransactionCells() {
+
 
     }
 }
